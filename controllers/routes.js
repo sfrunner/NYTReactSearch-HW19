@@ -17,8 +17,9 @@ router.post("/searchlog", function(req,res){
         if(err)
             console.log(err)
         else
-            console.log(json.body);
-            res.send(json.body);
+            var JSONresponse = JSON.parse(json.body);
+            console.log(JSONresponse.response.docs);
+            res.json(JSONresponse.response.docs);
     });
 });
 
