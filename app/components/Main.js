@@ -3,10 +3,11 @@ var ReactBootstrap = require("react-bootstrap");
 
 //Retrieve helpers
 var helpers = require("../helpers.js");
+var Results = require("./Results.js");
 
 var Main = React.createClass({
     getInitialState: function(){
-        return {topic:"",startYear:"",endYear:""}
+        return {topic:"",startYear:"",endYear:"",results:""}
     },
     consoleLog: function(event){
         event.preventDefault();
@@ -29,6 +30,7 @@ var Main = React.createClass({
         var FormControl = ReactBootstrap.FormControl;
         var Button = ReactBootstrap.Button;
         return(
+            <div>
          <form>
         <FormGroup
           controlId="search-form"
@@ -62,6 +64,9 @@ var Main = React.createClass({
             Submit
         </Button>
       </form>
+      <Results topic={this.state.topic} startYear={this.state.startYear} endYear={this.state.endYear} />
+      </div>
+
         )
     }
 });

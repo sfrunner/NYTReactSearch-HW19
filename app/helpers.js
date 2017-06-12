@@ -13,7 +13,17 @@ var Helpers = {
         .catch(function (error) {
             console.log(error);
         });
+    },
+    getResults: function(){
+        axios.get("/searchresults")
+        .then(function(response){
+            return response;
+        })
+        .catch(function(error){
+            console.log(error);
+        });
     }
 }
+
 
 module.exports = Helpers;
