@@ -19,12 +19,16 @@
   },
   "homepage": "https://github.com/sfrunner/NYTReactSearch-HW19#readme",
   "dependencies": {
+    "axios": "^0.16.2",
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "express-handlebars": "^3.0.0",
     "moment": "^2.18.1",
     "mongoose": "^4.10.5",
+    "newyorktimes": "0.0.2",
+    "nyt": "^0.1.0",
     "react": "^15.5.4",
+    "react-bootstrap": "^0.31.0",
     "react-dom": "^15.5.4"
   },
   "devDependencies": {
