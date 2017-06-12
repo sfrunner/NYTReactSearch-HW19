@@ -15,13 +15,14 @@ var Helpers = {
         });
     },
     getResults: function(){
-        axios.get("/searchresults")
+        return(axios.get("/searchresults")
         .then(function(response){
-            return response;
+            console.log(response);
         })
         .catch(function(error){
             console.log(error);
-        });
+        })
+        )
     }
 }
 

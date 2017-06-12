@@ -6,10 +6,10 @@ var helpers = require("../helpers.js");
 
 var Results = React.createClass({
     getInitialState: function(){
-        return {results: ""}
+        return {results: helpers.getResults()}
     },
     renderTest: function(){
-        console.log(helpers.getResults());
+        console.log(this.state.results);
     },
     render: function(){
         var Jumbotron = ReactBootstrap.Jumbotron;
@@ -18,7 +18,7 @@ var Results = React.createClass({
             <Jumbotron>
     <h1>Hello, world!</h1>
     <p>{this.state.results}</p>
-    <p><Button bsStyle="primary" onClick={this.renderTest()}>Learn more</Button></p>
+    <p onClick={this.renderTest()}><Button bsStyle="primary">Learn more</Button></p>
   </Jumbotron>
         )
     }
