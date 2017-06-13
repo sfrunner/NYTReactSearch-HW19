@@ -2,27 +2,15 @@ var axios = require("axios");
 
 var Helpers = {
     getSearch: function(topic, startYear, endYear){
-        axios.post('/searchlog', {
+        return (axios.post('/searchlog', {
             topic: topic,
             startYear: startYear,
             endYear: endYear
         })
-        .then(function (response) {
-            console.log(response);
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+        )
     },
     getResults: function(){
-        return(axios.get("/searchresults")
-        .then(function(response){
-            console.log(response);
-        })
-        .catch(function(error){
-            console.log(error);
-        })
-        )
+        return axios.get("/searchresults")
     }
 }
 

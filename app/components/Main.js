@@ -9,10 +9,6 @@ var Main = React.createClass({
     getInitialState: function(){
         return {topic:"",startYear:"",endYear:"",results:""}
     },
-    consoleLog: function(event){
-        event.preventDefault();
-        console.log(this.state);
-    },
     onChangeTopic:function(event){
         this.setState({topic:event.target.value});
     },
@@ -23,7 +19,16 @@ var Main = React.createClass({
         this.setState({endYear:event.target.value});
     },
     onSubmit: function(){
-            helpers.getSearch(this.state.topic,this.state.startYear,this.state.endYear);
+        var resultResponse = "";
+        helpers.getSearch(this.state.topic,this.state.startYear,this.state.endYear)
+        .then(function(responsePOST){
+            helpers.getResults()
+            .then(function(responseGET){
+                console.log(responseGET);
+                this.setState({results: responseGET.data});
+                
+            }.bind(this));
+        }.bind(this));
     },
     render: function(){
         var FormGroup = ReactBootstrap.FormGroup;
@@ -64,7 +69,7 @@ var Main = React.createClass({
             Submit
         </Button>
       </form>
-      <Results topic={this.state.topic} startYear={this.state.startYear} endYear={this.state.endYear} />
+      <Results topic={this.state.topic} startYear={this.state.startYear} endYear={this.state.endYear} results={this.state.results} />
       </div>
 
         )
