@@ -17,9 +17,9 @@ var Search = React.createClass({
                         <strong>
                             Title:
                         </strong>
-                         {t.title} 
+                         {t.title}  
                         <strong>
-                            Date Saved:
+                             Date Saved:
                         </strong> 
                         {t.dateInserted} 
                         <button className="btn" id={t._id} onClick={this.deleteArticle}>
