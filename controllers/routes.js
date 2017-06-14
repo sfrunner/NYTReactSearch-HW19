@@ -6,7 +6,12 @@ var Article = require("../models/article.js")
 //New York Times Info
 var request = require("request");
 var NYTAPIKEY = "1b8740592e7f4012ab30a555827c0c58";
-mongoose.connect('mongodb://localhost/nytreact');
+
+//localhost DB connect
+//mongoose.connect('mongodb://localhost/nytreact');
+
+//Herokuy DB Connect
+mongo.connect(process.env.MONGODB_URI);
 
 
 //Render Initial React App via Handlebars
