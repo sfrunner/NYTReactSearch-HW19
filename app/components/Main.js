@@ -42,7 +42,7 @@ var Main = React.createClass({
         var FormGroup = ReactBootstrap.FormGroup;
         var FormControl = ReactBootstrap.FormControl;
         var Button = ReactBootstrap.Button;
-        this.retrieveSavedArticles()
+        this.retrieveSavedArticles();
         return(
             <div onChange={this.retrieveSavedArticles}>
                 <form>
