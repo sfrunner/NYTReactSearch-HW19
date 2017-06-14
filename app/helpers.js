@@ -9,8 +9,14 @@ var Helpers = {
         })
         )
     },
-    getResults: function(){
-        return axios.get("/searchresults")
+    sendArticle: function(articleObject){
+        return(axios.post("/savearticle", articleObject));
+    },
+    getHistory: function(){
+        return(axios.get("/savedarticles"))
+    },
+    deleteArticle: function(articleId){
+        axios.delete("/deletearticle/" + articleId);
     }
 }
 

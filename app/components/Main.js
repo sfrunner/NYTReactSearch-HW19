@@ -4,10 +4,11 @@ var ReactBootstrap = require("react-bootstrap");
 //Retrieve helpers
 var helpers = require("../helpers.js");
 var Results = require("./Results.js");
+var Search = require("./Search.js")
 
 var Main = React.createClass({
     getInitialState: function(){
-        return {topic:"",startYear:"",endYear:"",results:""}
+        return {topic:"",startYear:"",endYear:"", resultsAvailable:false, results: [], savedArticles:[]}
     },
     onChangeTopic:function(event){
         this.setState({topic:event.target.value});
@@ -19,23 +20,35 @@ var Main = React.createClass({
         this.setState({endYear:event.target.value});
     },
     onSubmit: function(){
+        if(this.state.topic != "" && this.state.startYear != "" && this.state.endYear != ""){
         var resultResponse = "";
         helpers.getSearch(this.state.topic,this.state.startYear,this.state.endYear)
         .then(function(responsePOST){
-            helpers.getResults()
-            .then(function(responseGET){
-                console.log(responseGET);
-                this.setState({results: responseGET.data});
-                
-            }.bind(this));
+            this.setState(
+                {
+                    results:[responsePOST.data[0],responsePOST.data[1],responsePOST.data[2],responsePOST.data[3],responsePOST.data[4]]
+                });
+                this.setState({resultsAvailable: true});
+                console.log(this.state.results);
         }.bind(this));
+        }
+    },
+    //Property to Ypdate
+     testing:function(){
+         console.log("hello");
+        helpers.getHistory()
+        .then(function(response){
+            console.log(response);
+            this.setState({savedArticles: response})
+        }.bind(this))
     },
     render: function(){
         var FormGroup = ReactBootstrap.FormGroup;
         var FormControl = ReactBootstrap.FormControl;
         var Button = ReactBootstrap.Button;
+        this.testing()
         return(
-        <div>
+        <div onChange={this.testing}>
             <form>
                 <FormGroup
                 >
@@ -45,6 +58,7 @@ var Main = React.createClass({
                     placeholder="Star Wars"
                     onChange={this.onChangeTopic}
                     id="topic"
+                    required
                 />
            <FormControl
             name="startYear"
@@ -52,6 +66,7 @@ var Main = React.createClass({
             placeholder="1977"
             onChange={this.onChangeStartYear}
             id="startYear"
+            required
           />
            <FormControl
             name="endYear"
@@ -59,6 +74,7 @@ var Main = React.createClass({
             placeholder="2016"
             onChange={this.onChangeEndYear}
             id="endYear"
+            required
           />
         </FormGroup>
         <Button 
@@ -68,7 +84,10 @@ var Main = React.createClass({
             Submit
         </Button>
       </form>
-      <Results topic={this.state.topic} startYear={this.state.startYear} endYear={this.state.endYear} results={this.state.results} />
+      <Results onChange={this.testing} topic={this.state.topic} startYear={this.state.startYear} endYear={this.state.endYear} results={this.state.results}/>
+
+      <Search savedArticles={this.state.savedArticles} />
+
       </div>
 
         )
