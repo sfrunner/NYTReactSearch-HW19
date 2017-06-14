@@ -1,7 +1,6 @@
 var React = require("react");
 var ReactBootstrap = require("react-bootstrap");
 
-//Retrieve helpers
 var helpers = require("../helpers.js");
 var Results = require("./Results.js");
 var Search = require("./Search.js")
@@ -28,16 +27,13 @@ var Main = React.createClass({
                 {
                     results:[responsePOST.data[0],responsePOST.data[1],responsePOST.data[2],responsePOST.data[3],responsePOST.data[4]]
                 });
-                console.log(this.state.results);
             }.bind(this));
         }
     },
     //Property to Refresh Saved Articles
      retrieveSavedArticles:function(){
-         console.log("hello");
         helpers.getHistory()
         .then(function(response){
-            console.log(response);
             this.setState({savedArticles: response})
         }.bind(this))
     },
@@ -45,7 +41,7 @@ var Main = React.createClass({
         var FormGroup = ReactBootstrap.FormGroup;
         var FormControl = ReactBootstrap.FormControl;
         var Button = ReactBootstrap.Button;
-        this.retrieveSavedArticles()
+        this.retrieveSavedArticles();
         return(
             <div onChange={this.retrieveSavedArticles}>
                 <form>

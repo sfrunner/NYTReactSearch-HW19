@@ -25,11 +25,12 @@
     "express-handlebars": "^3.0.0",
     "moment": "^2.18.1",
     "mongoose": "^4.10.5",
-    "newyorktimes": "0.0.2",
-    "nyt": "^0.1.0",
     "react": "^15.5.4",
     "react-bootstrap": "^0.31.0",
-    "react-dom": "^15.5.4"
+    "react-dom": "^15.5.4",
+    "react-router": "^3.0.5",
+    "react-router-dom": "^4.1.1",
+    "request": "^2.81.0"
   },
   "devDependencies": {
     "babel-core": "^6.25.0",
