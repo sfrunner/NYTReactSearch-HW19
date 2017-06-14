@@ -11,7 +11,7 @@ var NYTAPIKEY = "1b8740592e7f4012ab30a555827c0c58";
 //mongoose.connect('mongodb://localhost/nytreact');
 
 //Herokuy DB Connect
-mongoose.connect("mongodb://heroku_3lvdkx58:1itu1o5marr5g26iq2cu2l0ml3@ds111922.mlab.com:11922/heroku_3lvdkx58");
+mongoose.connect(process.env.MONGODB_URI);
 
 
 //Render Initial React App via Handlebars
