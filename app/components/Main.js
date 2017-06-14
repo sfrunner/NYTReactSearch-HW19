@@ -35,18 +35,17 @@ var Main = React.createClass({
         var FormControl = ReactBootstrap.FormControl;
         var Button = ReactBootstrap.Button;
         return(
-            <div>
-         <form>
-        <FormGroup
-          controlId="search-form"
-        >
-          <FormControl
-            name="topic"
-            type="text"
-            placeholder="Star Wars"
-            onChange={this.onChangeTopic}
-            id="topic"
-          />
+        <div>
+            <form>
+                <FormGroup
+                >
+                <FormControl
+                    name="topic"
+                    type="text"
+                    placeholder="Star Wars"
+                    onChange={this.onChangeTopic}
+                    id="topic"
+                />
            <FormControl
             name="startYear"
             type="text"
