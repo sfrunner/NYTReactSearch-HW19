@@ -39,11 +39,22 @@ router.post("/searchlog", function(req,res){
     });
 });
 
-router.get("/searchresults", function(req,res){
+router.get("/savedarticles", function(req,res){
     Article.find({}, function(err,response){
         res.json(response);
     });
 });
+
+router.delete("/deletearticle/:articleId", function(req,res){
+    Article.findByIdAndRemove(req.params.articleId, function(err,response){
+        if(err){
+            console.log(err);
+        }
+        else{
+            console.log("Article Deleted");
+        }
+    })
+})
 
 
 module.exports = router;

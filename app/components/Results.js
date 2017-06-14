@@ -5,9 +5,6 @@ var ReactBootstrap = require("react-bootstrap");
 var helpers = require("../helpers.js");
 
 var Results = React.createClass({
-    getInitialState: function(){
-        return {resultsAvailable:false}
-    },
     saveArticle: function(event){
         console.log(event.target.id)
         var articleNumber = event.target.id;

@@ -4,10 +4,11 @@ var ReactBootstrap = require("react-bootstrap");
 //Retrieve helpers
 var helpers = require("../helpers.js");
 var Results = require("./Results.js");
+var Search = require("./Search.js")
 
 var Main = React.createClass({
     getInitialState: function(){
-        return {topic:"",startYear:"",endYear:"", resultsAvailable:false, results: []}
+        return {topic:"",startYear:"",endYear:"", resultsAvailable:false, results: [], savedArticles:[]}
     },
     onChangeTopic:function(event){
         this.setState({topic:event.target.value});
@@ -30,12 +31,23 @@ var Main = React.createClass({
                 console.log(this.state.results);
         }.bind(this));
     },
+    //Property to Ypdate
+     componentDidUpdate:function(prevProps, prevState){
+         console.log("hello");
+    if(prevState.results !== this.state.results){
+        helpers.getHistory()
+        .then(function(response){
+            console.log(response);
+            this.setState({savedArticles: response})
+        }.bind(this))
+    } 
+    },
     render: function(){
         var FormGroup = ReactBootstrap.FormGroup;
         var FormControl = ReactBootstrap.FormControl;
         var Button = ReactBootstrap.Button;
         return(
-        <div>
+        <div onChange={this.componentDidUpdate}>
             <form>
                 <FormGroup
                 >
@@ -69,6 +81,9 @@ var Main = React.createClass({
         </Button>
       </form>
       <Results topic={this.state.topic} startYear={this.state.startYear} endYear={this.state.endYear} results={this.state.results}/>
+
+      <Search savedArticles={this.state.savedArticles} />
+
       </div>
 
         )

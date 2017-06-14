@@ -11,6 +11,12 @@ var Helpers = {
     },
     sendArticle: function(articleObject){
         return(axios.post("/savearticle", articleObject));
+    },
+    getHistory: function(){
+        return(axios.get("/savedarticles"))
+    },
+    deleteArticle: function(articleId){
+        axios.delete("/deletearticle/" + articleId);
     }
 }
 
