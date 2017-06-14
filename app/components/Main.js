@@ -1,7 +1,6 @@
 var React = require("react");
 var ReactBootstrap = require("react-bootstrap");
 
-//Retrieve helpers
 var helpers = require("../helpers.js");
 var Results = require("./Results.js");
 var Search = require("./Search.js")
