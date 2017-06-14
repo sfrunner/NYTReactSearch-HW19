@@ -16,10 +16,10 @@ var Results = React.createClass({
             
             return(<div>
                  <p>{this.props.results[0].headline.main}<button id="article-1" onClick={this.saveArticle}>Save</button></p>
-                 <p>{this.props.results[1].headline.main}<button>Save</button></p>
-                 <p>{this.props.results[2].headline.main}<button>Save</button></p>
-                 <p>{this.props.results[3].headline.main}<button>Save</button></p>
-                 <p>{this.props.results[4].headline.main}<button>Save</button></p>
+                 <p>{this.props.results[1].headline.main}<button id="article-2" onClick={this.saveArticle}>Save</button></p>
+                 <p>{this.props.results[2].headline.main}<button id="article-3" onClick={this.saveArticle}>Save</button></p>
+                 <p>{this.props.results[3].headline.main}<button id="article-4" onClick={this.saveArticle}>Save</button></p>
+                 <p>{this.props.results[4].headline.main}<button id="article-5" onClick={this.saveArticle}>Save</button></p>
                  </div>
             ) 
         }
