@@ -12,6 +12,18 @@ router.get("/", function(req,res){
     res.render("searchNYT");
 });
 
+router.post("/savearticle", function(req,res){
+    Article.create({
+                    title:req.body.headline.main,
+                    dateTimeArticle: req.body.pub_date,
+                    url: req.body.web_url,
+                    dateInserted: moment().format()
+                }, function(err, response){
+                    if (err) 
+                        console.log(err)
+                });
+})
+
 router.post("/searchlog", function(req,res){
     console.log(req.body);
     request("https://api.nytimes.com/svc/search/v2/articlesearch.json?q="+ req.body.topic + "&begin_date=" + req.body.startYear + "0101&end_date=" + req.body.endYear + "1231&api-key=" + NYTAPIKEY, function (err, json) {
@@ -23,20 +35,6 @@ router.post("/searchlog", function(req,res){
             var JSONresponse = JSON.parse(json.body);
             console.log(JSONresponse.response.docs);
             res.json(JSONresponse.response.docs);
-
-            //Clear and Save to Database
-            Article.remove({});
-            for(var i = 0; i<JSONresponse.response.docs.length; i++){
-                Article.create({
-                    title:JSONresponse.response.docs[i].headline.main,
-                    dateTimeArticle: JSONresponse.response.docs[i].pub_date,
-                    url: JSONresponse.response.docs[i].web_url,
-                    dateInserted: moment().format()
-                }, function(err, response){
-                    if (err) 
-                        console.log(err)
-                });
-            }
         }
     });
 });

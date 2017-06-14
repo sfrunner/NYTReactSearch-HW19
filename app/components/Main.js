@@ -7,7 +7,7 @@ var Results = require("./Results.js");
 
 var Main = React.createClass({
     getInitialState: function(){
-        return {topic:"",startYear:"",endYear:"",results:""}
+        return {topic:"",startYear:"",endYear:"", resultsAvailable:false, results: []}
     },
     onChangeTopic:function(event){
         this.setState({topic:event.target.value});
@@ -22,12 +22,12 @@ var Main = React.createClass({
         var resultResponse = "";
         helpers.getSearch(this.state.topic,this.state.startYear,this.state.endYear)
         .then(function(responsePOST){
-            helpers.getResults()
-            .then(function(responseGET){
-                console.log(responseGET);
-                this.setState({results: responseGET.data});
-                
-            }.bind(this));
+            this.setState(
+                {
+                    results:[responsePOST.data[0],responsePOST.data[1],responsePOST.data[2],responsePOST.data[3],responsePOST.data[4]]
+                });
+                this.setState({resultsAvailable: true});
+                console.log(this.state.results);
         }.bind(this));
     },
     render: function(){
@@ -68,7 +68,7 @@ var Main = React.createClass({
             Submit
         </Button>
       </form>
-      <Results topic={this.state.topic} startYear={this.state.startYear} endYear={this.state.endYear} results={this.state.results} />
+      <Results topic={this.state.topic} startYear={this.state.startYear} endYear={this.state.endYear} results={this.state.results}/>
       </div>
 
         )

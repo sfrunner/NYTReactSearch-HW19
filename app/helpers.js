@@ -9,8 +9,8 @@ var Helpers = {
         })
         )
     },
-    getResults: function(){
-        return axios.get("/searchresults")
+    sendArticle: function(articleObject){
+        return(axios.post("/savearticle", articleObject));
     }
 }
 
