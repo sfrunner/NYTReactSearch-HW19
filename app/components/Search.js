@@ -11,24 +11,36 @@ var Search = React.createClass({
     },
     illustrateSavedArticles: function(){
         if(this.props.savedArticles != ""){
-        return this.props.savedArticles.data.map(t => 
-        <div className="panel panel-default">
-            <div className="panel-heading">Title: {t.title} Date Published: {t.dateTimeArticle} <button className="btn" id={t._id} onClick={this.deleteArticle}>Delete</button></div>
-            <div className="panel-body">
-            {t.url}
-            </div>
-        </div>
-        )
-            
+            return this.props.savedArticles.data.map(t => 
+                <div className="panel panel-default">
+                    <div className="panel-heading">
+                        <strong>
+                            Title:
+                        </strong>
+                         {t.title} 
+                        <strong>
+                            Date Saved:
+                        </strong> 
+                        {t.dateInserted} 
+                        <button className="btn" id={t._id} onClick={this.deleteArticle}>
+                            Delete
+                        </button>
+                    </div>
+                    <div className="panel-body">
+                        <a href={t.url}>
+                            {t.url}
+                        </a>
+                    </div>
+                </div>
+            )   
         } 
     },
     render:function(){
          var Jumbotron = ReactBootstrap.Jumbotron;
-         var Button = ReactBootstrap.Button;
         return(
-    <Jumbotron>
-        {this.illustrateSavedArticles()}
-    </Jumbotron>
+            <Jumbotron>
+                {this.illustrateSavedArticles()}
+            </Jumbotron>
         )
     }
 });

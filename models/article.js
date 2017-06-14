@@ -1,5 +1,4 @@
 var mongoose = require("mongoose");
-var moment = require("moment");
 
 var article = mongoose.Schema({
     title:{
@@ -9,8 +8,7 @@ var article = mongoose.Schema({
         type:Date
     },
     dateInserted:{
-       type: Date,
-       default: moment().format()
+       type: String,
     },
     url:{
         type: String

@@ -8,7 +8,7 @@ var Search = require("./Search.js")
 
 var Main = React.createClass({
     getInitialState: function(){
-        return {topic:"",startYear:"",endYear:"", resultsAvailable:false, results: [], savedArticles:[]}
+        return {topic:"",startYear:"",endYear:"", results: [], savedArticles:[]}
     },
     onChangeTopic:function(event){
         this.setState({topic:event.target.value});
@@ -28,13 +28,12 @@ var Main = React.createClass({
                 {
                     results:[responsePOST.data[0],responsePOST.data[1],responsePOST.data[2],responsePOST.data[3],responsePOST.data[4]]
                 });
-                this.setState({resultsAvailable: true});
                 console.log(this.state.results);
-        }.bind(this));
+            }.bind(this));
         }
     },
-    //Property to Ypdate
-     testing:function(){
+    //Property to Refresh Saved Articles
+     retrieveSavedArticles:function(){
          console.log("hello");
         helpers.getHistory()
         .then(function(response){
@@ -46,50 +45,47 @@ var Main = React.createClass({
         var FormGroup = ReactBootstrap.FormGroup;
         var FormControl = ReactBootstrap.FormControl;
         var Button = ReactBootstrap.Button;
-        this.testing()
+        this.retrieveSavedArticles()
         return(
-        <div onChange={this.testing}>
-            <form>
-                <FormGroup
-                >
-                <FormControl
-                    name="topic"
-                    type="text"
-                    placeholder="Star Wars"
-                    onChange={this.onChangeTopic}
-                    id="topic"
-                    required
-                />
-           <FormControl
-            name="startYear"
-            type="text"
-            placeholder="1977"
-            onChange={this.onChangeStartYear}
-            id="startYear"
-            required
-          />
-           <FormControl
-            name="endYear"
-            type="text"
-            placeholder="2016"
-            onChange={this.onChangeEndYear}
-            id="endYear"
-            required
-          />
-        </FormGroup>
-        <Button 
-            type="button"
-            onClick={this.onSubmit}
-            >
-            Submit
-        </Button>
-      </form>
-      <Results onChange={this.testing} topic={this.state.topic} startYear={this.state.startYear} endYear={this.state.endYear} results={this.state.results}/>
-
-      <Search savedArticles={this.state.savedArticles} />
-
-      </div>
-
+            <div onChange={this.retrieveSavedArticles}>
+                <form>
+                    <FormGroup
+                    >
+                        <FormControl
+                            name="topic"
+                            type="text"
+                            placeholder="Star Wars"
+                            onChange={this.onChangeTopic}
+                            id="topic"
+                            required
+                        />
+                        <FormControl
+                            name="startYear"
+                            type="text"
+                            placeholder="1977"
+                            onChange={this.onChangeStartYear}
+                            id="startYear"
+                            required
+                        />
+                        <FormControl
+                            name="endYear"
+                            type="text"
+                            placeholder="2016"
+                            onChange={this.onChangeEndYear}
+                            id="endYear"
+                            required
+                        />
+                    </FormGroup>
+                    <Button 
+                        type="button"
+                        onClick={this.onSubmit}
+                    >
+                        Submit
+                    </Button>
+                </form>
+                <Results topic={this.state.topic} startYear={this.state.startYear} endYear={this.state.endYear} results={this.state.results}/>
+                <Search savedArticles={this.state.savedArticles} />
+            </div>
         )
     }
 });
