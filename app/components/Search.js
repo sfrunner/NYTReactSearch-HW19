@@ -27,7 +27,7 @@ var Search = React.createClass({
                         </button>
                     </div>
                     <div className="panel-body">
-                        <a href={t.url}>
+                        <a href={t.url} target="_blank">
                             {t.url}
                         </a>
                     </div>
